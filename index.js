@@ -63,8 +63,8 @@ export function* formSubmitSaga () {
   while (true) { // eslint-disable-line no-constant-condition
     const {
       meta: {
-        successAction,
-        failureAction,
+        successActionType,
+        failureActionType,
         resolve,
         reject
       },
@@ -73,8 +73,8 @@ export function* formSubmitSaga () {
     yield put(payload);
 
     const {success, failure} = yield race({
-      success: take(successAction),
-      failure: take(failureAction)
+      success: take(successActionType),
+      failure: take(failureActionType)
     });
 
     if (success) {
@@ -85,12 +85,14 @@ export function* formSubmitSaga () {
   }
 }
 
-export function addFormSubmitSagaTo (others) {
-  if (!others) {
-    return fork(formSubmitSaga);
+export function addFormSubmitSagaTo (root) {
+  if (!root) {
+    return formSubmitSaga;
   }
-  if (Array.isArray(others)) {
-    return [...others, fork(formSubmitSaga)];
-  }
-  return [others, fork(formSubmitSaga)];
+  return function* formSubmitSagaComposed () {
+    yield [
+      fork(root),
+      fork(formSubmitSaga)
+    ];
+  };
 }

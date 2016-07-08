@@ -47,11 +47,15 @@ This is assuming you are using `handleSubmit` within your form and not passing i
 
 There are multiple ways to configure `onSubmitActions`, the simplest being the one above.
 
-#### `onSubmitActions(root: string, transform?: Function)`
+```
+onSubmitActions(root: string, transform?: Function)
+```
 
 You pass in a string, and the action types are derived from that with the suffixes: SUBMIT, SUCCESS, and FAILURE. You can optionally provide a transform function which will be used to transform the form values before being added to the submit action.
 
-#### `onSubmitActions(submit: string | Function, success: string, failure: string)`
+```
+onSubmitActions(submit: string | Function, success: string, failure: string)
+```
 
 Here you can pass each action type separately. The submit action (first parameter) can be an action creator function if desired.
 
