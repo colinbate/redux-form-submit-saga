@@ -1,0 +1,34 @@
+{
+  "name": "redux-form-submit-saga",
+  "version": "1.0.0",
+  "description": "Handles redux-form submissions using redux-saga",
+  "main": "index-es5.js",
+  "jsnext:main": "index.js",
+  "scripts": {
+    "build": "babel index.js --out-file index-es5.js",
+    "prepublish": "npm run build",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/colinbate/redux-form-submit-saga.git"
+  },
+  "keywords": [
+    "redux",
+    "form",
+    "saga",
+    "submit",
+    "bridge"
+  ],
+  "author": "Colin Bate <colin@colinbate.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/colinbate/redux-form-submit-saga/issues"
+  },
+  "homepage": "https://github.com/colinbate/redux-form-submit-saga#readme",
+  "devDependencies": {
+    "babel-cli": "^6.10.1",
+    "babel-preset-es2015": "^6.9.0",
+    "eslint": "^3.0.1"
+  }
+}
