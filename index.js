@@ -1,4 +1,4 @@
-import {put, take, race, call, fork} from 'redux-saga/effects';
+import {put, take, race, call, spawn} from 'redux-saga/effects';
 import {SubmissionError} from 'redux-form';
 
 const identity = f => f;
@@ -91,8 +91,8 @@ export function addFormSubmitSagaTo (root) {
   }
   return function* formSubmitSagaComposed () {
     yield [
-      fork(root),
-      fork(formSubmitSaga)
+      spawn(root),
+      spawn(formSubmitSaga)
     ];
   };
 }

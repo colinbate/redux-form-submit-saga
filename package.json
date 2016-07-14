@@ -1,6 +1,6 @@
 {
   "name": "redux-form-submit-saga",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Handles redux-form submissions using redux-saga",
   "main": "index-es5.js",
   "jsnext:main": "index.js",
@@ -18,7 +18,8 @@
     "form",
     "saga",
     "submit",
-    "bridge"
+    "bridge",
+    "middleware"
   ],
   "author": "Colin Bate <colin@colinbate.com>",
   "license": "MIT",
