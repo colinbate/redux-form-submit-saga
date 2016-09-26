@@ -70,12 +70,14 @@ export function* formSubmitSaga () {
       },
       payload
     } = yield take(FORM_SUBMIT);
-    yield put(payload);
 
-    const {success, failure} = yield race({
-      success: take(successActionType),
-      failure: take(failureActionType)
-    });
+    const [{success, failure}] = yield [
+      race({
+        success: take(successActionType),
+        failure: take(failureActionType)
+      }),
+      put(payload),
+    ];
 
     if (success) {
       yield call(resolve, success.payload);

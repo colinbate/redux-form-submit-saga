@@ -1,6 +1,6 @@
 {
   "name": "redux-form-submit-saga",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Handles redux-form submissions using redux-saga",
   "main": "index-es5.js",
   "jsnext:main": "index.js",
