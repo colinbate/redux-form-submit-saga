@@ -1,9 +1,25 @@
 {
-  "presets": ["es2015"],
-  "plugins": [
-    ["transform-runtime", {
-      "polyfill": false,
-      "regenerator": true
-    }]
-  ]
+  "presets": ["es2015-no-commonjs"],
+  "env": {
+    "development": {
+      "plugins": ["transform-es2015-modules-commonjs", ["transform-runtime", {
+        "polyfill": false,
+        "regenerator": true
+      }]]
+    },
+    "production": {
+      "plugins": ["transform-es2015-modules-commonjs", ["transform-runtime", {
+        "polyfill": false,
+        "regenerator": true
+      }]]
+    },
+    "es": {
+      "plugins": [
+        ["transform-runtime", {
+          "polyfill": false,
+          "regenerator": true
+        }]
+      ]
+    }
+}
 }

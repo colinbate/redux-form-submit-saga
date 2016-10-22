@@ -81,3 +81,9 @@ export function* watchMyForm () {
   yield* takeLatest('MY_FORM_SUBMIT', myFormSaga);
 }
 ```
+
+## Immutable.js support
+
+If you are using Immutable.js with redux-form, you can import the above functions from `redux-form-submit-saga/immutable`.
+
+If you want to use ES modules for tree-shaking or other purposes, you'll need to use `redux-form-submit-saga/es/immutable` directly.

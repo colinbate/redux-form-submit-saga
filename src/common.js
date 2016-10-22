@@ -1,8 +1,6 @@
-import {put, take, race, call, spawn} from 'redux-saga/effects';
-import {SubmissionError} from 'redux-form';
 
 const identity = f => f;
-const FORM_SUBMIT = 'redux-form-submit-saga/FORM_SUBMIT';
+export const FORM_SUBMIT = 'redux-form-submit-saga/FORM_SUBMIT';
 export const SUFFIX = [
   'SUBMIT',
   'SUCCESS',
@@ -57,44 +55,4 @@ export function onSubmitActions (...actions) {
     new Promise((resolve, reject) => {
       dispatch(formSubmit(...actionArray, values, resolve, reject));
     });
-}
-
-export function* formSubmitSaga () {
-  while (true) { // eslint-disable-line no-constant-condition
-    const {
-      meta: {
-        successActionType,
-        failureActionType,
-        resolve,
-        reject
-      },
-      payload
-    } = yield take(FORM_SUBMIT);
-
-    const [{success, failure}] = yield [
-      race({
-        success: take(successActionType),
-        failure: take(failureActionType)
-      }),
-      put(payload),
-    ];
-
-    if (success) {
-      yield call(resolve, success.payload);
-    } else {
-      yield call(reject, new SubmissionError(failure.payload));
-    }
-  }
-}
-
-export function addFormSubmitSagaTo (root) {
-  if (!root) {
-    return formSubmitSaga;
-  }
-  return function* formSubmitSagaComposed () {
-    yield [
-      spawn(root),
-      spawn(formSubmitSaga)
-    ];
-  };
 }
