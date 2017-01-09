@@ -39,7 +39,7 @@
   },
   "peerDependencies": {
     "redux-form": "^6.0.0-rc.2",
-    "redux-saga": "0.11.x || 0.12.x || 0.13.x"
+    "redux-saga": "0.11.0 - 0.14.x"
   },
   "dependencies": {
     "babel-runtime": "^6.9.0"
