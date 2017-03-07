@@ -1,6 +1,6 @@
 
 const identity = f => f;
-export const FORM_SUBMIT = 'redux-form-submit-saga/FORM_SUBMIT';
+export const FORM_SUBMIT = '@@redux-form-submit-saga/FORM_SUBMIT';
 export const SUFFIX = [
   'SUBMIT',
   'SUCCESS',
