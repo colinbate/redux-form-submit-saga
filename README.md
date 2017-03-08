@@ -32,10 +32,15 @@ If you need to access the saga directly, it can be imported as `formSubmitSaga`.
 For each form where you want to submit with something async (often), you can setup the submit function like this:
 
 ```js
-import {reduxForm, ...} from 'redux-form';
+import {reduxForm, Field} from 'redux-form';
 import {onSubmitActions} from 'redux-form-submit-saga';
 
-// ... define MyForm ...
+const MyForm = ({handleSubmit}) => (
+  <form onSubmit={handleSubmit}>
+    <Field component="input" type="text"/>
+    <button type="submit">Submit</button> 
+  </form>
+);
 
 export default reduxForm({
   form: 'myForm',
@@ -43,7 +48,7 @@ export default reduxForm({
 })(MyForm);
 ```
 
-This is assuming you are using `handleSubmit` within your form and not passing it anything.
+This is assuming you are using `handleSubmit` within your form and not invoking it with an inline handler function.
 
 There are multiple ways to configure `onSubmitActions`, the simplest being the one above.
 
@@ -51,7 +56,7 @@ There are multiple ways to configure `onSubmitActions`, the simplest being the o
 onSubmitActions(root: string, transform?: Function)
 ```
 
-You pass in a string, and the action types are derived from that with the suffixes: SUBMIT, SUCCESS, and FAILURE. You can optionally provide a transform function which will be used to transform the form values before being added to the submit action.
+You pass in a string, and the action types are derived from that with the suffixes: `_SUBMIT`, `_SUCCESS`, and `_FAILURE`. You can optionally provide a transform function which will be used to transform the form values before being added to the submit action.
 
 ```
 onSubmitActions(submit: string | Function, success: string, failure: string)
