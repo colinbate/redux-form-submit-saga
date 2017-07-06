@@ -1,4 +1,4 @@
-import {put, take, race, call} from 'redux-saga/effects';
+import {all, put, take, race, call} from 'redux-saga/effects';
 import {FORM_SUBMIT} from './common';
 
 export default (SubmissionError) => function* formSubmitSaga () {
@@ -13,13 +13,13 @@ export default (SubmissionError) => function* formSubmitSaga () {
       payload
     } = yield take(FORM_SUBMIT);
 
-    const [{success, failure}] = yield [
+    const [{success, failure}] = yield all([
       race({
         success: take(successActionType),
         failure: take(failureActionType)
       }),
       put(payload),
-    ];
+    ]);
 
     if (success) {
       yield call(resolve, success.payload);
