@@ -11,10 +11,17 @@ const factory = SubmissionError => ({
       return formSubmitSaga(SubmissionError);
     }
     return function* formSubmitSagaComposed () {
-      yield all([
-        spawn(root),
-        spawn(formSubmitSaga(SubmissionError))
-      ]);
+      if (!all) {
+        yield all([
+          spawn(root),
+          spawn(formSubmitSaga(SubmissionError))
+        ]);
+      } else {
+        yield [
+          spawn(root),
+          spawn(formSubmitSaga(SubmissionError))
+        ];
+      }
     };
   }
 
