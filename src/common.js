@@ -31,8 +31,8 @@ function normalizeShortSig (root, transform = identity) {
   return types;
 }
 
-function normalizeLongSig (submit, success, failure) {
-  const submitCreator = typeof submit === 'string' ? creatorFactory(submit, identity) : submit;
+function normalizeLongSig (submit, success, failure, transform = identity) {
+  const submitCreator = typeof submit === 'string' ? creatorFactory(submit, transform) : submit;
   return [submitCreator, success, failure];
 }
 
