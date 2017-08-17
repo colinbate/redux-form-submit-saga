@@ -1,4 +1,4 @@
-import {spawn} from 'redux-saga/effects';
+import {all, spawn} from 'redux-saga/effects';
 import {onSubmitActions} from './common';
 import formSubmitSaga from './form-submit-saga';
 
@@ -11,10 +11,17 @@ const factory = SubmissionError => ({
       return formSubmitSaga(SubmissionError);
     }
     return function* formSubmitSagaComposed () {
-      yield [
-        spawn(root),
-        spawn(formSubmitSaga(SubmissionError))
-      ];
+      if (all) {
+        yield all([
+          spawn(root),
+          spawn(formSubmitSaga(SubmissionError))
+        ]);
+      } else {
+        yield [
+          spawn(root),
+          spawn(formSubmitSaga(SubmissionError))
+        ];
+      }
     };
   }
 
