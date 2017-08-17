@@ -11,7 +11,7 @@ const factory = SubmissionError => ({
       return formSubmitSaga(SubmissionError);
     }
     return function* formSubmitSagaComposed () {
-      if (!all) {
+      if (all) {
         yield all([
           spawn(root),
           spawn(formSubmitSaga(SubmissionError))

@@ -15,7 +15,7 @@ export default (SubmissionError) => function* formSubmitSaga () {
 
     let response;
 
-    if (!all) {
+    if (all) {
       response = yield all([
         race({
           success: take(successActionType),
