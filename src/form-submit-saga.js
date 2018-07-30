@@ -38,7 +38,7 @@ export default (SubmissionError) => function* formSubmitSaga () {
       yield call(resolve, success.payload);
     } else {
       let reduxFormPayload = failure.payload;
-      if (!failure.payload._error) {
+      if (!('_error' in failure.payload)) {
         reduxFormPayload = {_error: failure.payload};
       }
       yield call(reject, new SubmissionError(reduxFormPayload));
